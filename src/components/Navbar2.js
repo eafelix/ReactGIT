@@ -34,8 +34,7 @@ import CartWidget from './Cartwidget';
                 <MenuItemLink>
                 <div>
                     Nosotros
-                </div>
-                 
+                </div> 
                 </MenuItemLink>
               </MenuItem>
               <MenuItem>

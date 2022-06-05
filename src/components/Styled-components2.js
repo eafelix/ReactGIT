@@ -123,10 +123,6 @@ export const MenuItemLink = styled.a`
   }
 `;
 
-//export const ContainerCurso = styled.div`
-  //text-align: center;
-//`;
-
 export const ContainerProduct = styled.div`
   margin-left: 20px;
   width: 400px;
@@ -138,4 +134,55 @@ export const ContainerProduct = styled.div`
   p {
     font-size: smaller;
   }
+`;
+
+export const ContainerItem = styled.div`
+padding: 20px;
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+`;
+
+export const Info = styled.div`
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease;
+`;
+
+export const Circle = styled.div`
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+`;
+
+export const Image = styled.img`
+    height: 75%;
+    z-index: 2;
+`;
+
+export const Icon = styled.div`
+    font-size: 12px;
+    width: 100px;
+    height: 40px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 10px;
+    transition: all 0.5s ease;
+    &:hover {
+        background-color: #e9f5f5;
+        transform: scale(1.3);
+    }
 `;
