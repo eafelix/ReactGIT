@@ -1,12 +1,22 @@
-import Item from "./Item";
-import { ContainerProduct } from './Styled-components2'
+import ItemCount from "./ItemCount";
+import { ContainerProduct } from './ui-styled-components'
 
-const ItemList = ({ items }) => {
+const ItemList = ({ items = [], onAdd }) => {
     return (
         <ContainerProduct>
         {
             items.length > 0
-            ? items.map(item => <Item key={item.id} id={item.id} price={item.cost} pictureUrl={item.image[0]} stock={item.stock} />)
+            ? items.map(item => 
+               <ItemCount 
+                 key={item.id} 
+                 id={item.id}
+                 price={item.cost}
+                 pictureUrl={item.pictureUrl}
+                 stock={item.stock}
+                 onAdd={onAdd}
+                 title={item.title}
+                 description={item.description}
+                />)
             : <p>Cargando...</p>
         }
         </ContainerProduct>

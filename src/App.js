@@ -1,30 +1,46 @@
-
-import './App.css'
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import 'bootstrap/dist/css/bootstrap.css'
-import 'styled-components/dist/styled-components.cjs'
-import Navbar2 from './components/Navbar2';
-import Curso from './components/Curso.js'
+import { useState } from "react";
+import Navbar from './components/Navbar';
 import ItemListContainer from './components/ItemListContainer';
 import { FaLeaf } from "react-icons/fa";
-import ContainerProducts from './utils/Products';
 
+const Cart = ({ cartItems = [] }) => {
+  console.info('Cart updated:', cartItems)
+  return (
+  <div className="App">
+    <h1>Bienvenidos a</h1>
+    <h2><FaLeaf />VeganShop</h2>
+    {cartItems.length > 0 && (cartItems.map(cartItem => (<div>
+      {cartItem.product.title + " x " + cartItem.qty}
+    </div>)))
+    }
+    <hr />
+  </div>
+)}
 
 function App() {
+  // [{ product, qty }, { product, qty }, { product, qty }, ...]
+  const [cart, updateCart] = useState([])
+
+  const addToCart = ({product, qty}) => {
+    const newCartItem = { product, qty };
+    const cartItem = cart.find(x => x.product.id === product.id)
+
+    // retorna antes y la ejecucion de la funcioncion termina en el bloque del if: early return
+    if(!cartItem) {
+      return updateCart([...cart, newCartItem])
+    } 
+
+    cartItem.qty = qty;
+    const cartWithItem = cart.filter(x => x.id === product.id)
+    updateCart([...cartWithItem, cartItem])
+  }
+
   return (
     <>
-    <Navbar2 />
-    <div className="App">
-      <h1>Bienvenidos a</h1>
-      <h2><FaLeaf />VeganShop</h2>
-      <hr />
-    </div>
-    <div>
-    <Curso name="Come bien" description="VIVE BIEN"/>
-    <ItemListContainer greetings="Podes encontrarnos en Yrigoyen y Alsina" />
-    <ContainerProducts />
-    </div>
-  </>
+      <Navbar />
+      <Cart cartItems={cart} />
+      <ItemListContainer addToCart={addToCart} />
+    </>
   );
 }
 
